@@ -3,7 +3,7 @@ name = "vasjit"
 version = "0.1.0"
 edition = "2021"
 description = "Hybrid Rust+C++ JIT for Nintendo Wii (Broadway) and Switch (Tegra X1)"
-license = "MIT"
+license = "GPL-3.0-or-later"
 
 [lib]
 name = "vasjit"
