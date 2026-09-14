@@ -1,0 +1,19 @@
+
+pub const GET_GPR: u32 = 1; pub const SET_GPR: u32 = 2;
+pub const GET_FPR: u32 = 3; pub const SET_FPR: u32 = 4;
+pub const GET_VEC: u32 = 5; pub const SET_VEC: u32 = 6;
+pub const GET_CR: u32 = 7; pub const SET_CR: u32 = 8;
+pub const GET_LR: u32 = 9; pub const SET_LR: u32 = 10;
+pub const GET_CTR: u32 = 11; pub const SET_CTR: u32 = 12;
+pub const GET_XER: u32 = 13; pub const SET_XER: u32 = 14;
+pub const GET_MSR: u32 = 15; pub const SET_MSR: u32 = 16;
+pub const GET_FPSCR: u32 = 17; pub const SET_FPSCR: u32 = 18;
+pub const SET_PC: u32 = 19; pub const GET_CR_BIT: u32 = 20;
+pub const SET_CR_FIELD: u32 = 21; pub const GET_SPR: u32 = 22;
+pub const SET_SPR: u32 = 23; pub const GET_SP: u32 = 24;
+pub const CACHE_OP: u32 = 25; pub const SYNC: u32 = 26;
+pub const ISYNC: u32 = 27; pub const DCBZ: u32 = 28;
+pub const TRAP: u32 = 29; pub const SC: u32 = 30;
+pub const SVC: u32 = 31; pub const RFI: u32 = 32;
+pub const GQR_LOAD: u32 = 33; pub const GQR_STORE: u32 = 34;
+pub const SYSREG: u32 = 35; pub const UNIMPLEMENTED: u32 = 36;

@@ -1,0 +1,18 @@
+[package]
+name = "vasjit"
+version = "0.1.0"
+edition = "2021"
+description = "Hybrid Rust+C++ JIT for Nintendo Wii (Broadway) and Switch (Tegra X1)"
+license = "MIT"
+
+[lib]
+name = "vasjit"
+path = "src/lib.rs"
+
+[[bin]]
+name = "vasjit"
+path = "src/main.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
