@@ -257,13 +257,14 @@ extern "C" CJitStatus jit_emit_block(const CIrBlock* block, CHostCaps caps, uint
 
   size_t code_len=e.b.size(); size_t n_patch=e.patches.size();
   size_t hdr=sizeof(AllocHdr); size_t patch_bytes=n_patch*sizeof(CPatchSite);
-  size_t total=hdr+code_len+patch_bytes+16;
+  size_t patch_off=(hdr+code_len+7)&~size_t(7);
+  size_t total=patch_off+patch_bytes;
   long page=sysconf(_SC_PAGESIZE); total=(total+page-1)&~(size_t)(page-1);
   void* mem=mmap(nullptr,total,PROT_READ|PROT_WRITE,MAP_PRIVATE|MAP_ANONYMOUS,-1,0);
   if(mem==MAP_FAILED) return CJitStatus_OutOfMemory;
   auto* h=new (mem) AllocHdr(); h->total=total; h->code_off=hdr; h->code_len=code_len; h->n_patch=(uint32_t)n_patch;
   uint8_t* code=(uint8_t*)mem+hdr; std::memcpy(code,e.b.data(),code_len);
-  CPatchSite* ps=(CPatchSite*)(code+code_len);
+  CPatchSite* ps=(CPatchSite*)((uint8_t*)mem+patch_off);
   if(n_patch) std::memcpy(ps,e.patches.data(),patch_bytes);
   if(mprotect(mem,total,PROT_READ|PROT_EXEC)!=0){ munmap(mem,total); return CJitStatus_EmitFailed; }
   out->code=code; out->code_len=code_len; out->num_patch_sites=(uint32_t)n_patch; out->patch_sites=ps;
